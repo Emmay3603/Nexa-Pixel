@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Site made with Mobirise Website Builder v6.1.4, https://mobirise.com -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="generator" content="Mobirise v6.1.4, mobirise.com" />
@@ -11,8 +10,12 @@
     />
     <link
       rel="shortcut icon"
-      href="assets/images/mbr-137x115.png"
+      href="assets/images/logo2.png"
       type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
     <meta name="description" content="" />
 
@@ -82,6 +85,37 @@
     />
 
     <style>
+      /* Floating contact button */
+      .floating-contact {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background: #ffae00;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 1;
+      }
+
+      /* Hidden state (for scroll logic) */
+      .floating-contact.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* 🚫 Hide the button completely on screens larger than 768px */
+      @media (min-width: 769px) {
+        .floating-contact {
+          display: none !important;
+        }
+      }
+
       .portfolio {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -120,7 +154,6 @@
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
         padding: 20px;
-
         max-width: 1200px;
         margin: auto;
       }
@@ -130,7 +163,6 @@
         width: 100%;
         aspect-ratio: 16 / 9;
         overflow: hidden;
-
         border-radius: 8px;
         background: #222;
       }
@@ -141,9 +173,52 @@
         object-fit: cover;
         display: block;
       }
+      .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        color: #ffffff;
+        opacity: 0.8;
+        z-index: 2;
+        pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        display: flex;
+        background-color: #ffae0000;
+        border: 2px white solid;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
+
+      /* Hover effect (desktop): fade overlay + scale play icon */
+      .card:hover::before {
+        opacity: 0;
+      }
+
+      .card:hover .play-icon {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0;
+      }
+
+      /* While playing (mobile): hide overlay + icon */
+      .card.playing::before,
+      .card.playing .play-icon {
+        opacity: 0;
+      }
     </style>
   </head>
   <body>
+    <a href="https://wa.me/2348101369911" class="floating-contact">
+      <i
+        class="fa-regular fa-message"
+        style="color: white; font-size: 20px"
+      ></i>
+    </a>
+
     <section
       data-bs-version="5.1"
       class="menu menu3 cid-uYq98cDT0p"
@@ -157,7 +232,7 @@
               ><a
                 class="navbar-caption text-white display-4"
                 href="index.html#header18-2"
-                >Tajudeen Isa Babatunde</a
+                >Nexa-Pixel</a
               ></span
             >
           </div>
@@ -189,13 +264,7 @@
                   >Home&nbsp;</a
                 >
               </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link link text-secondary text-primary display-7"
-                  href="index.html#article04-8"
-                  >About</a
-                >
-              </li>
+
               <li class="nav-item">
                 <a
                   class="nav-link link text-secondary text-primary display-7"
@@ -234,7 +303,7 @@
     <section
       data-bs-version="5.1"
       class="header18 cid-uYiesiiyp9 mbr-fullscreen"
-      data-bg-video="https://youtu.be/omE1HT4gMK8?si=TC3iWIEitHdKtyqx"
+      data-bg-video="https://youtu.be/zs7R35QTQ_w?si=0zdt5ZwAGnDhDeQv"
       id="header18-2"
     >
       <div
@@ -270,44 +339,6 @@
       </div>
     </section>
 
-    <section
-      data-bs-version="5.1"
-      class="start article4 cid-uYlwVihiR2 mbr-fullscreen"
-      id="article04-8"
-    >
-      <div class="container-fluid">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-12 col-lg-5 image-wrapper">
-            <img
-              class="w-100"
-              src="assets/images/chatgpt20image20sep20302020252011-31-1120pm-978x1467.png"
-              alt="Mobirise Website Builder"
-            />
-          </div>
-          <div class="col-12 col-md-12 col-lg">
-            <div class="text-wrapper align-left">
-              <h1 class="mbr-section-title mbr-fonts-style mb-4 display-5">
-                <strong>The Vision Behind the Camera</strong>
-              </h1>
-              <p class="mbr-text mbr-fonts-style mb-4 display-7">
-                My name is <strong>Tajudeen Isa Babatunde</strong>, a digital
-                filmmaker, creative director, and AI content innovator.
-                <br />
-                <br />I use tools like Veo 3, Kling AI, and Runway to create
-                cinematic moments that live in people’s minds. From trailers
-                that feel like Netflix intros to soulful AI music videos, I turn
-                abstract ideas into visual emotion.
-                <br />
-                <br />Creative Style: Dramatic, Emotional, Cinematic
-                <br />
-                <br />Tools: Veo 3, Kling AI, Runway, Blender
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="portfolio" id="portfolio">
       <h1 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5">
         Portfolio
@@ -315,12 +346,12 @@
 
       <div class="filter-buttons">
         <button class="active" data-filter="all">All</button>
-        <button data-filter="cinematic">Cinematic</button>
-        <button data-filter="music">Music</button>
-        <button data-filter="product">Product</button>
-        <button data-filter="commercials">Commercials</button>
-        <button data-filter="social">Social</button>
-        <button data-filter="horror">Horror</button>
+        <button data-filter="cinematic">Cinematic Videos</button>
+        <button data-filter="music">Music Videos</button>
+        <button data-filter="product">Product Videos</button>
+        <button data-filter="commercials">Commercial videos</button>
+        <button data-filter="social">Social - Media videos</button>
+        <button data-filter="horror">Horror Movies</button>
         <button data-filter="movie-trailer">Movie Trailer</button>
       </div>
 
@@ -330,6 +361,9 @@
           <video preload="metadata" poster="">
             <source src="commercial video2.mp4" type="video/mp4" />
           </video>
+          <div class="play-icon">
+            <div style="translate: 5px -2px">▶</div>
+          </div>
         </div>
 
         <!-- Music -->
@@ -337,6 +371,9 @@
           <video preload="metadata" poster="">
             <source src="g9tpfpwwt18h1dy7z78r.mp4" type="video/mp4" />
           </video>
+          <div class="play-icon">
+            <div style="translate: 5px -2px">▶</div>
+          </div>
         </div>
 
         <!-- Product -->
@@ -344,6 +381,9 @@
           <video preload="metadata" poster="">
             <source src="hszyhrsgazbireh3bg5q.mp4" type="video/mp4" />
           </video>
+          <div class="play-icon">
+            <div style="translate: 5px -2px">▶</div>
+          </div>
         </div>
 
         <!-- Commercials -->
@@ -351,6 +391,9 @@
           <video preload="metadata" poster="">
             <source src="th2drp5brsdysmgriirx.mp4" type="video/mp4" />
           </video>
+          <div class="play-icon">
+            <div style="translate: 5px -2px">▶</div>
+          </div>
         </div>
 
         <!-- Social -->
@@ -361,6 +404,9 @@
               type="video/mp4"
             />
           </video>
+          <div class="play-icon">
+            <div style="translate: 5px -2px">▶</div>
+          </div>
         </div>
 
         <!-- Horror -->
@@ -368,6 +414,9 @@
           <video preload="metadata" poster="">
             <source src="commercial video.mp4" type="video/mp4" />
           </video>
+          <div class="play-icon">
+            <div style="translate: 5px -2px">▶</div>
+          </div>
         </div>
 
         <!-- Movie Trailer -->
@@ -375,6 +424,9 @@
           <video preload="metadata" poster="">
             <source src="0802 (1).mp4" type="video/mp4" />
           </video>
+          <div class="play-icon">
+            <div style="translate: 5px -2px">▶</div>
+          </div>
         </div>
       </div>
 
@@ -821,90 +873,72 @@
         <div class="row justify-content-center">
           <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
             <form
-              action="https://mo"
+              action="https://formspree.io/f/xyzlybyv"
               method="POST"
               class="mbr-form form-with-styler"
               data-form-title="Form Name"
             >
-              <input
-                type="hidden"
-                name="email"
-                data-form-email="true"
-                value="C7/hlOl8YDLWBCyzaPf9PHpo4b2rRQU4eOXrzY3u1SihcZQXLosULbpX85sx8b8Z9pH09qC7D/sXdGRIAxmO9AIsOCbXtcHVqX5vz/d7gO8sIOeiIm6tznPI+NqKWslO"
-              />
-              <div class="row">
-                <div
-                  hidden="hidden"
-                  data-form-alert=""
-                  class="alert alert-success col-12"
-                >
-                  Thanks for filling out the form!
-                </div>
-                <div
-                  hidden="hidden"
-                  data-form-alert-danger=""
-                  class="alert alert-danger col-12"
-                >
-                  Oops...! some problem!
-                </div>
-              </div>
               <div class="dragArea row">
                 <div class="col-md col-sm-12 form-group mb-3" data-for="name">
                   <input
                     type="text"
-                    name="name"
+                    name="Name"
                     placeholder="Name"
-                    data-form-field="name"
                     class="form-control"
-                    value=""
                     id="name-form02-j"
+                    required
                   />
                 </div>
                 <div class="col-md col-sm-12 form-group mb-3" data-for="email">
                   <input
                     type="email"
-                    name="email"
+                    name="Email"
                     placeholder="E-mail"
-                    data-form-field="email"
                     class="form-control"
-                    value=""
                     id="email-form02-j"
+                    required
                   />
                 </div>
-                <div class="col-12 form-group mb-3" data-for="phone">
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Budget Range"
-                    data-form-field="phone"
-                    class="form-control"
-                    value=""
-                    id="phone-form02-j"
-                  />
-                </div>
-                <div class="col-12 form-group mb-3" data-for="phone">
+
+                <div class="col-12 form-group mb-3">
                   <select
-                    name="phone"
-                    placeholder="Budget Range"
-                    data-form-field="phone"
+                    name="Budget Range"
                     class="form-control"
-                    value=""
-                    id="-form02-j"
+                    id="budget-form02-j"
                   >
-                    <option value="">Cartegories</option>
-                    <option value="">Emmay</option>
-                    <option value="">Emmay</option>
+                    <option value="">Budget Range</option>
+                    <option value="$150 - $400">$150 - $400</option>
+                    <option value="$400 - $500">$450 - $800</option>
+                    <option value="$550+">$850+</option>
                   </select>
                 </div>
+
+                <div class="col-12 form-group mb-3">
+                  <select
+                    name="Category"
+                    class="form-control"
+                    id="category-form02-j"
+                  >
+                    <option value="">Category</option>
+                    <option value="Cinematic">Cinematic Video</option>
+                    <option value="Music Video">Music Video</option>
+                    <option value="Commercials / Ads">
+                      Social - Media video
+                    </option>
+                    <option value="3D Product Visuals">Horror Movie</option>
+                    <option value="Movie Trailer">Movie Trailer</option>
+                  </select>
+                </div>
+
                 <div class="col-12 form-group mb-3" data-for="textarea">
                   <textarea
-                    name="textarea"
+                    name="Message"
                     placeholder="Message"
-                    data-form-field="textarea"
                     class="form-control"
                     id="textarea-form02-j"
                   ></textarea>
                 </div>
+
                 <div
                   class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"
                 >
@@ -913,11 +947,60 @@
                   </button>
                 </div>
               </div>
+
+              <script>
+                document
+                  .querySelector(".mbr-form")
+                  .addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const form = e.target;
+                    const data = new FormData(form);
+                    const response = await fetch(form.action, {
+                      method: form.method,
+                      body: data,
+                      headers: { Accept: "application/json" },
+                    });
+
+                    if (response.ok) {
+                      alert("✅ Message sent successfully!");
+                      form.reset();
+                    } else {
+                      alert(
+                        "❌ Oops! There was an issue sending your message."
+                      );
+                    }
+                  });
+              </script>
             </form>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      const contactBtn = document.querySelector(".floating-contact");
+      const heroSection = document.querySelector("#header18-2");
+
+      function updateButtonVisibility() {
+        // Only apply logic on mobile screens
+        if (window.innerWidth > 768) {
+          contactBtn.classList.add("hidden");
+          return;
+        }
+
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+
+        if (heroBottom <= 0) {
+          contactBtn.classList.remove("hidden"); // Show button
+        } else {
+          contactBtn.classList.add("hidden"); // Hide button
+        }
+      }
+
+      window.addEventListener("scroll", updateButtonVisibility);
+      window.addEventListener("load", updateButtonVisibility);
+      window.addEventListener("resize", updateButtonVisibility);
+    </script>
 
     <section
       data-bs-version="5.1"
@@ -929,7 +1012,7 @@
         <div class="media-container-row align-center mbr-white">
           <div class="col-12">
             <p class="mbr-text mb-0 mbr-fonts-style display-7">
-              © 2025 Tajudeen Isa Babatunde. All rights reserved.
+              © 2025 Nexa-Pixel. All rights reserved.
             </p>
           </div>
         </div>
