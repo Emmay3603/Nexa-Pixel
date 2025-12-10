@@ -962,13 +962,6 @@
                 value="d6f38244-c3c2-4888-8560-bbbbd7cdb385"
               />
 
-              <!-- REDIRECT TO THANK YOU PAGE -->
-              <input
-                type="hidden"
-                name="redirect"
-                value="https://www.nexa-pixel.com/thank-you.html"
-              />
-
               <div class="dragArea row">
                 <div class="col-md col-sm-12 form-group mb-3" data-for="name">
                   <input
@@ -1051,7 +1044,6 @@
                     const form = e.target;
                     const formData = new FormData(form);
 
-                    // Show temporary "Sending..." message (MUCH faster than alert)
                     const btn = form.querySelector("button[type='submit']");
                     btn.disabled = true;
                     btn.innerHTML = "Sending...";
@@ -1069,10 +1061,10 @@
                         btn.innerHTML = "Sent ✅";
                         form.reset();
 
+                        // 👇 REDIRECT TO THANK YOU PAGE
                         setTimeout(() => {
-                          btn.innerHTML = "Let’s Make Something Epic";
-                          btn.disabled = false;
-                        }, 1500);
+                          window.location.href = "thank-you.html";
+                        }, 500);
                       } else {
                         btn.innerHTML = "Failed ❌";
                         setTimeout(() => {
