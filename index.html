@@ -424,6 +424,7 @@
         <button class="book-call-btn" id="bookCallBtn">Book a Call</button>
       </div>
     </div>
+    <!-- calendly -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const btn = document.getElementById("bookCallBtn");
@@ -460,6 +461,22 @@
 
         // Run once immediately
         updateBookBarVisibility();
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const heroBtn = document.getElementById("heroBookCallBtn");
+        const calendlyUrl = "https://calendly.com/nexa-pixel-info/30min";
+
+        if (heroBtn) {
+          heroBtn.addEventListener("click", function () {
+            if (window.Calendly) {
+              Calendly.initPopupWidget({ url: calendlyUrl });
+            } else {
+              window.open(calendlyUrl, "_blank");
+            }
+          });
+        }
       });
     </script>
 
@@ -582,11 +599,15 @@
                 href="index.html#form02-j"
                 >GET A QUOTE</a
               >
-              <a class="btn btn-primary display-7" href="#portfolio"
-                ><span style="color: #0d1321; font-weight: 600"
-                  >EXPLORE PORTFOLIO</span
-                ></a
+              <button
+                class="btn btn-primary display-7"
+                id="heroBookCallBtn"
+                type="button"
               >
+                <span style="color: #0d1321; font-weight: 600">
+                  BOOK A CALL
+                </span>
+              </button>
             </div>
           </div>
         </div>
