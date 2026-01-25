@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -77,7 +77,10 @@
       rel="preload"
       href="https://fonts.googleapis.com/css?family=Merriweather:300,400,500,600,700,800,900,300i,400i,500i,600i,700i,800i,900i&display=swap"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
     <noscript
       ><link
@@ -88,7 +91,10 @@
       rel="preload"
       href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
     <noscript
       ><link
@@ -99,7 +105,10 @@
       rel="preload"
       href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800,900,400i,500i,600i,700i,800i,900i&display=swap"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
     <noscript
       ><link
@@ -110,7 +119,10 @@
       rel="preload"
       href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
     <noscript
       ><link
@@ -134,12 +146,16 @@
         opacity: 0;
         pointer-events: none;
         transform: translateY(120%);
-        transition: opacity 0.25s ease, transform 0.25s ease;
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease;
       }
 
       /* Ensure normal state still feels smooth */
       .book-call-bar {
-        transition: opacity 0.25s ease, transform 0.25s ease;
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease;
       }
       /* Sticky Calendly Bar (mobile + desktop) */
       .book-call-bar {
@@ -181,7 +197,9 @@
         font-weight: 700;
         cursor: pointer;
         white-space: nowrap;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
 
       .book-call-btn:hover {
@@ -260,7 +278,9 @@
         align-items: center;
         z-index: 9999;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
         opacity: 1;
       }
 
@@ -344,7 +364,9 @@
         opacity: 0.8;
         z-index: 2;
         pointer-events: none;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
         display: flex;
         background-color: #ffae0000;
         border: 2px white solid;
@@ -393,7 +415,7 @@
     <div
       class="book-call-bar"
       id="bookCallBar"
-      data-calendly-url="https://calendly.com/emmanuelayomide3603/30min"
+      data-calendly-url="https://calendly.com/nexa-pixel-info/30min"
     >
       <div class="book-call-inner">
         <p class="book-call-text">
@@ -742,7 +764,7 @@
 
       <script>
         const filterButtons = document.querySelectorAll(
-          ".filter-buttons button"
+          ".filter-buttons button",
         );
         const cards = document.querySelectorAll(".card");
 
@@ -1231,7 +1253,7 @@
                         {
                           method: "POST",
                           body: formData,
-                        }
+                        },
                       );
 
                       if (response.ok) {
