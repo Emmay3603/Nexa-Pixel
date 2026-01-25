@@ -129,6 +129,18 @@
     />
 
     <style>
+      /* Hide state for the Book a Call bar */
+      .book-call-bar.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(120%);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+
+      /* Ensure normal state still feels smooth */
+      .book-call-bar {
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
       /* Sticky Calendly Bar (mobile + desktop) */
       .book-call-bar {
         position: fixed;
@@ -385,7 +397,7 @@
     >
       <div class="book-call-inner">
         <p class="book-call-text">
-          Not ready yet? Book a quick call and let’s plan your video.
+          Not ready yet? Book a quick call and let’s plan your project.
         </p>
         <button class="book-call-btn" id="bookCallBtn">Book a Call</button>
       </div>
@@ -394,16 +406,38 @@
       document.addEventListener("DOMContentLoaded", function () {
         const btn = document.getElementById("bookCallBtn");
         const bar = document.getElementById("bookCallBar");
+        const hero = document.getElementById("header18-2");
         const calendlyUrl = bar.getAttribute("data-calendly-url");
 
+        // Calendly popup
         btn.addEventListener("click", function () {
           if (window.Calendly) {
             Calendly.initPopupWidget({ url: calendlyUrl });
           } else {
-            // Fallback: open in new tab if calendly script hasn't loaded yet
             window.open(calendlyUrl, "_blank");
           }
         });
+
+        // Hide bar ONLY while hero is visible
+        function updateBookBarVisibility() {
+          if (!hero || !bar) return;
+
+          const heroBottom = hero.getBoundingClientRect().bottom;
+
+          // If hero is still on screen (bottom is below top of viewport), hide bar
+          if (heroBottom > 0) {
+            bar.classList.add("hidden");
+          } else {
+            bar.classList.remove("hidden");
+          }
+        }
+
+        window.addEventListener("scroll", updateBookBarVisibility);
+        window.addEventListener("load", updateBookBarVisibility);
+        window.addEventListener("resize", updateBookBarVisibility);
+
+        // Run once immediately
+        updateBookBarVisibility();
       });
     </script>
 
