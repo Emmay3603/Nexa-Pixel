@@ -119,7 +119,98 @@
       type="text/css"
     />
 
+    <!-- Calendly widget -->
+    <link
+      href="https://assets.calendly.com/assets/external/widget.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://assets.calendly.com/assets/external/widget.js"
+      type="text/javascript"
+      async
+    ></script>
+
     <style>
+      /* Hide state for the Book a Call bar */
+      .book-call-bar.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(120%);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+
+      /* Ensure normal state still feels smooth */
+      .book-call-bar {
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      /* Sticky Calendly Bar (mobile + desktop) */
+      .book-call-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9998;
+        background: rgba(13, 19, 33, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 174, 0, 0.25);
+        padding: 12px 14px;
+      }
+
+      .book-call-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .book-call-text {
+        color: #fff;
+        font-size: 14px;
+        line-height: 1.2;
+        margin: 0;
+        opacity: 0.95;
+      }
+
+      .book-call-btn {
+        background: #ffae00;
+        color: #0d1321;
+        border: none;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .book-call-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(255, 174, 0, 0.25);
+      }
+
+      /* Make space so bar doesn't cover footer content */
+      body {
+        padding-bottom: 80px;
+      }
+
+      /* On very small screens make it stack nicely */
+      @media (max-width: 480px) {
+        .book-call-inner {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .book-call-btn {
+          width: 100%;
+          text-align: center;
+        }
+        .book-call-text {
+          text-align: center;
+        }
+      }
+
       /* Floating contact button */
       .floating-contact {
         position: fixed;
@@ -334,6 +425,58 @@
     </script>
   </head>
   <body>
+    <!-- Sticky Book a Call Bar -->
+    <div
+      class="book-call-bar"
+      id="bookCallBar"
+      data-calendly-url="https://calendly.com/emmanuelayomide3603/30min"
+    >
+      <div class="book-call-inner">
+        <p class="book-call-text">
+          Not ready yet? Book a quick call and let’s plan your project.
+        </p>
+        <button class="book-call-btn" id="bookCallBtn">Book a Call</button>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("bookCallBtn");
+        const bar = document.getElementById("bookCallBar");
+        const hero = document.getElementById("header18-2");
+        const calendlyUrl = bar.getAttribute("data-calendly-url");
+
+        // Calendly popup
+        btn.addEventListener("click", function () {
+          if (window.Calendly) {
+            Calendly.initPopupWidget({ url: calendlyUrl });
+          } else {
+            window.open(calendlyUrl, "_blank");
+          }
+        });
+
+        // Hide bar ONLY while hero is visible
+        function updateBookBarVisibility() {
+          if (!hero || !bar) return;
+
+          const heroBottom = hero.getBoundingClientRect().bottom;
+
+          // If hero is still on screen (bottom is below top of viewport), hide bar
+          if (heroBottom > 0) {
+            bar.classList.add("hidden");
+          } else {
+            bar.classList.remove("hidden");
+          }
+        }
+
+        window.addEventListener("scroll", updateBookBarVisibility);
+        window.addEventListener("load", updateBookBarVisibility);
+        window.addEventListener("resize", updateBookBarVisibility);
+
+        // Run once immediately
+        updateBookBarVisibility();
+      });
+    </script>
+
     <a
       href="mailto:info@nexa-pixel.com?subject=Contact%20From%20Your%20Website&body=Hello%20Nexa%20Pixel,"
       class="floating-contact"
